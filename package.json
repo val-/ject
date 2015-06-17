@@ -1,0 +1,21 @@
+{
+  "name": "Ject",
+  "version": "0.0.1",
+  "author": "Valentin Agafonov",
+  "description": "New project template",
+  "private": true,
+  "dependencies": {
+    "tape": "latest"
+  },
+  "devDependencies": {
+    "browserify": "latest",
+    "rimraf": "latest",
+    "gulp": "latest",
+    "gulp-less": "latest",
+    "gulp-uglify": "latest",
+    "gulp-rename": "latest",
+    "vinyl-source-stream": "latest",
+    "gulp-css-base64": "latest",
+    "gulp-svg-symbols": "latest"
+  }
+}
