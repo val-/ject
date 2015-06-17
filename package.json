@@ -1,21 +1,21 @@
 {
-  "name": "Ject",
-  "version": "0.0.1",
-  "author": "Valentin Agafonov",
-  "description": "New project template",
-  "private": true,
-  "dependencies": {
-    "tape": "latest"
-  },
-  "devDependencies": {
-    "browserify": "latest",
-    "rimraf": "latest",
-    "gulp": "latest",
-    "gulp-less": "latest",
-    "gulp-uglify": "latest",
-    "gulp-rename": "latest",
-    "vinyl-source-stream": "latest",
-    "gulp-css-base64": "latest",
-    "gulp-svg-symbols": "latest"
-  }
+    "name": "Ject",
+    "version": "0.0.1",
+    "author": "Valentin Agafonov",
+    "description": "New project template",
+    "private": true,
+    "dependencies": {
+        "normalize.less": "latest",
+        "underscore": "latest"
+    },
+    "devDependencies": {
+        "gulp": "latest",
+        "rimraf": "latest",
+        "vinyl-source-stream": "latest",
+        "browserify": "latest",
+        "gulp-uglify": "latest",
+        "gulp-less": "latest",
+        "gulp-css-base64": "latest",
+        "gulp-svg-symbols": "latest"
+    }
 }

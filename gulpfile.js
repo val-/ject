@@ -9,79 +9,70 @@
         browserify = require('browserify'),
         source = require('vinyl-source-stream'),
         uglify = require('gulp-uglify'),
-        rename = require("gulp-rename"),
         less = require('gulp-less'),
         cssBase64 = require('gulp-css-base64'),
-        sourceFileJs = './src/js/app.js',
-        destFolderJs = './build/js/',
-        destFileJs = 'app.js',
-        sourceFileCss = 'common.less',
-        sourceFolderCss = './src/less/',
-        destFolderCss = './build/css/';
-    
-    gulp.task('clean-js', function (cb) {
-        rimraf(destFolderJs, cb);
+        
+        srcFolderJs         = './src/js/',
+        srcFileJs           = 'app.js',
+        
+        srcFolderCss        = './src/less/',
+        srcFileCss          = 'common.less',
+        
+        buildFolderJs       = './build/js/',
+        buildFolderCss      = './build/css/';
+
+    gulp.task('default', function () {
+        gulp.run('clean-js');
+        gulp.run('build-js');
+        gulp.run('clean-css');
+        gulp.run('build-css');
+        gulp.run('mv-html');
+        gulp.run('mv-fonts');
     });
     
-    gulp.task('watch-js', function () {
-        gulp.watch("./src/js/**", function () {
-            gulp.run('build-js');
-        });
+    gulp.task('clean-js', function (cb) {
+        rimraf(buildFolderJs, cb);
+    });
+    gulp.task('clean-css', function (cb) {
+        rimraf(buildFolderCss, cb);
     });
         
     gulp.task('build-js', function () {
-        return browserify(sourceFileJs)
+        return browserify(srcFolderJs + srcFileJs)
             .bundle()
-            .pipe(source(destFileJs))
-            .pipe(gulp.dest(destFolderJs));
-    });
-    
-    gulp.task('compress-js', function () {
-        gulp.src('./build/js/app.js')
+            .pipe(source())
             .pipe(uglify())
-            .pipe(rename("app.min.js"))
-            .pipe(gulp.dest(destFolderJs));
-    });
-        
-    gulp.task('build-tests', function () {
-        return browserify('./tests/main.js')
-            .bundle()
-            .pipe(source('tests.js'))
-            .pipe(gulp.dest(destFolderJs));
-    });
-    
-    gulp.task('clean-css', function (cb) {
-        rimraf(destFolderCss, cb);
-    });
-
-    gulp.task('watch-css', function () {
-        gulp.watch("./src/less/**", function () {
-            gulp.run('build-css');
-        });
+            .pipe(gulp.dest(buildFolderJs));
     });
     
     gulp.task('build-css', function () {
-        return gulp.src(sourceFolderCss + sourceFileCss)
+        return gulp.src(srcFolderCss + srcFileCss)
             .pipe(less())
             .pipe(cssBase64({
                 baseDir: './',
                 extensionsAllowed: ['.gif', '.jpg', '.png', '.svg']
             }))
-            .pipe(gulp.dest(destFolderCss));
+            .pipe(gulp.dest(buildFolderCss));
     });
     
-    gulp.task('build-fonts', function () {
+    gulp.task('watch-js', function () {
+        gulp.watch(srcFolderJs + '**', function () {
+            gulp.run('build-js');
+        });
+    });
+
+    gulp.task('watch-css', function () {
+        gulp.watch(srcFolderCss + '**', function () {
+            gulp.run('build-css');
+        });
+    });
+    
+    gulp.task('mv-fonts', function () {
         return gulp.src('./src/fonts/**').pipe(gulp.dest('./build/fonts'));
     });
     
-        
-    gulp.task('default', function () {
-      
-        gulp.run('build-js');
-        gulp.run('compress-js');
-        gulp.run('build-css');
-        gulp.run('build-fonts');
-        
+    gulp.task('mv-html', function () {
+        return gulp.src('./src/html/**').pipe(gulp.dest('./build/html'));
     });
 
 }());
