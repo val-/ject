@@ -1,0 +1,17 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        title Ject
+        link(rel='stylesheet', href='./css/common.css')
+        include ie.html
+        script(src='./js/app.js')
+        
+        include img/svg-symbols.svg
+    body
+        #newJectPlaceholder
+            svg.svg-symbol-rocket
+                use(xlink:href='#svg-symbol-rocket')
+            h1 Are you ready for new ject?
+            button Click me!
+      

@@ -6,16 +6,23 @@
     "private": true,
     "dependencies": {
         "normalize.less": "latest",
-        "underscore": "latest"
+        "underscore": "latest",
+        "zepto-browserify": "latest",
+        "jquery": "1.*"
     },
     "devDependencies": {
         "gulp": "latest",
         "rimraf": "latest",
-        "vinyl-source-stream": "latest",
         "browserify": "latest",
+        "vinyl-buffer": "latest",
+        "vinyl-source-stream": "latest",
         "gulp-uglify": "latest",
+        "gulp-sourcemaps": "latest",
         "gulp-less": "latest",
         "gulp-css-base64": "latest",
-        "gulp-svg-symbols": "latest"
+        "gulp-svg-symbols": "latest",
+        "gulp-jade": "latest",
+        "gulp-watch": "latest",
+        "browser-sync": "latest"
     }
 }
